@@ -349,6 +349,8 @@ if __name__ == '__main__':
         print(row['normalized_text'])
         # export the audio file
         sentence_sound_file = sound_file_cropped[row['start_timestamp_ms']:row['end_timestamp_ms']]
+        # change the samlping rate to 16000 and make it mono
+        sentence_sound_file = sentence_sound_file.set_frame_rate(16000).set_channels(1)
         sentence_sound_file.export(os.path.join(sentence_chunks_dir, f"{i}.mp3"), format="mp3")
     
     # export csv file
